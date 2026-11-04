@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dhawani – Multilingual Citizen Grievance Redressal</title><meta name="theme-color" content="#1e1b4b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5ff;--surface:#fff;--text:#1e1b3a;--muted:#55587a;--brand:#4338ca;--on-brand:#fff;--accent:#fbbf24;--line:#dcd9f5;--soft:#eeeafe;--hot:#c2410c;--bad:#b3261e;--tagc:#4338ca;--h1:#e0e7ff;--h2:#f6f5ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d24;--surface:#1a1738;--text:#eeeaff;--muted:#b4b2d6;--brand:#4f46e5;--line:#2e2a5c;--soft:#241f4d;--hot:#fdba74;--bad:#ff8a80;--tagc:#a5b4fc;--h1:#1b1850;--h2:#0f0d24;}}
+:root[data-theme="dark"]{--bg:#0f0d24;--surface:#1a1738;--text:#eeeaff;--muted:#b4b2d6;--brand:#4f46e5;--line:#2e2a5c;--soft:#241f4d;--hot:#fdba74;--bad:#ff8a80;--tagc:#a5b4fc;--h1:#1b1850;--h2:#0f0d24;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 Inter,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:Inter,Arial,sans-serif;margin:0}
+h2{font-size:22px;margin-bottom:12px}
+.tabs{display:flex;gap:8px;margin:20px 0;flex-wrap:wrap}
+.tabs button{min-height:44px;padding:0 20px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:600 15px Inter,sans-serif;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.grid2{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+@media (max-width:820px){.grid2{grid-template-columns:1fr}}
+#log{height:min(52vh,400px);overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:4px}
+.msg{max-width:88%;padding:10px 14px;border-radius:14px;white-space:pre-wrap;word-break:break-word}
+.me{align-self:flex-end;background:var(--brand);color:var(--on-brand);border-bottom-right-radius:4px}
+.bot{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
+.dots{letter-spacing:3px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:13px;padding:2px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--text)}
+.chip.hi{border-color:var(--bad);color:var(--bad);font-weight:600}
+.row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+input[type=text],input[type=password],select{min-height:44px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:16px Inter,sans-serif;padding:0 12px}
+input[type=text]{flex:1;min-width:140px}
+.btn{min-height:44px;padding:0 18px;border-radius:8px;border:0;background:var(--accent);color:#1e1b4b;font:600 15px Inter,sans-serif;cursor:pointer}
+.btn.alt{background:var(--soft);color:var(--text);border:1px solid var(--line)}
+.btn.sm{min-height:36px;padding:0 14px}
+.try{display:flex;flex-direction:column;gap:8px}
+.try button{text-align:left;min-height:44px;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);font:15px Inter,'Noto Sans Devanagari',sans-serif;cursor:pointer}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.stat b{display:block;font:700 30px Inter,Arial,sans-serif;color:var(--hot)}
+.bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:14px}
+.bar i{display:block;height:12px;border-radius:6px;background:var(--brand)}
+.twrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td select{min-height:36px;font-size:14px}
+.note{font-size:13px;color:var(--muted)}
+.steps{display:flex;gap:8px;list-style:none;padding:0;margin:16px 0;flex-wrap:wrap}
+.steps li{flex:1;min-width:100px;text-align:center;font-size:14px}
+.steps span{display:flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;margin:0 auto 4px;background:var(--soft);border:1px solid var(--line)}
+.steps .done span{background:var(--brand);color:var(--on-brand)}
+.steps .cur span{background:var(--accent);color:#1e1b4b;font-weight:700}
+.alert{border-color:var(--bad);color:var(--bad);font-weight:600;margin-bottom:16px}
+#map text{font:12px Inter,sans-serif;fill:var(--text)}
+.who{color:var(--muted);font-size:14px}.fld{display:flex;flex-direction:column;gap:4px;margin-top:12px}.fld input,.fld select{width:100%}
+.wv{transform-box:fill-box;transform-origin:center;animation:wave 1.2s ease-in-out infinite}@keyframes wave{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.bigmic{position:relative;width:88px;height:88px;border-radius:50%;border:0;background:var(--accent);color:#1e1b4b;font:700 16px Inter,sans-serif;cursor:pointer}
+.ring{position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--accent);animation:pulse 2s infinite;pointer-events:none}
+@keyframes pulse{0%{transform:scale(.92);opacity:.8}100%{transform:scale(1.25);opacity:0}}
+@keyframes rowin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.live{list-style:none;padding:0;margin:12px 0 0}.live li{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);animation:rowin .4s both;font-size:15px}.live b{min-width:84px;color:var(--muted);font-weight:500;font-size:14px}
+.ba input[type=range]{accent-color:#fbbf24}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+section.info{margin-top:32px}
+footer{padding:28px 0 40px}
+
+/* Citizen complaint workspace */
+.complaint-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.secure-pill{white-space:nowrap;border:1px solid var(--line);background:var(--soft);border-radius:99px;padding:5px 10px;font-size:12px;color:var(--muted)}
+.area-summary{display:flex;align-items:center;gap:11px;padding:12px 14px;border:1px solid var(--line);background:var(--soft);border-radius:10px;margin:0 0 14px}
+.area-pin{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--surface);font-size:22px;color:var(--brand)}
+.area-summary b,.area-summary small{display:block}.area-summary b{font-size:13px}.area-summary small{font-size:13px;color:var(--muted);margin-top:2px}
+#log{height:min(42vh,350px);min-height:180px;padding:12px;background:color-mix(in srgb,var(--soft) 42%,transparent);border:1px solid var(--line);border-radius:12px}
+.composer{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.composer-label{display:block;font-weight:600;font-size:14px;margin-bottom:8px}
+#in{display:block;width:100%;min-height:94px;resize:vertical;border:1px solid var(--line);border-radius:9px;padding:12px;background:var(--bg);color:var(--text);font:15px/1.5 Inter,Arial,sans-serif;outline-offset:2px}
+.composer-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.tool-actions{display:flex;gap:8px;flex-wrap:wrap}.send-btn{min-width:160px}
+.composer-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px}.composer-foot #pv{flex:1;min-width:180px}
+@media(max-width:560px){.complaint-head{display:block}.secure-pill{display:inline-block;margin-top:10px}.composer-tools{align-items:stretch}.tool-actions{width:100%}.send-btn{width:100%}.composer-foot{align-items:flex-start}}
+[hidden]{display:none!important}
+
+/* ===== Government-portal skin (inspired by consumerhelpline.gov.in) ===== */
+body{font-size:16px}
+a{color:var(--tagc)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#1e1b4b;padding:8px 12px;z-index:100}.skip:focus{left:8px;top:8px}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tagc);margin:0 0 8px}
+.card{box-shadow:0 1px 3px rgba(30,27,75,.06)}
+h2{font-size:20px}
+.util{background:#1e1b4b;color:#fff;font-size:13px}
+.util .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:6px;padding-bottom:6px;flex-wrap:wrap}
+.util .g{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.util a{color:#fff}
+.util .who{color:#fff;font-size:13px}
+.fz button,.util .btn.alt.sm{min-height:30px;border-radius:4px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55);font:600 12px Inter,sans-serif;cursor:pointer;padding:0 10px}
+.fz button{min-width:32px}
+.fz button:hover,.util .btn.alt.sm:hover{background:#fff;color:#1e1b4b}
+.bbar{background:var(--surface);border-bottom:1px solid var(--line)}
+.bbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.logo{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}
+.logo .t{font:700 24px Inter,sans-serif;color:var(--tagc);display:flex;gap:10px;align-items:baseline}
+.logo small{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.proto{font-size:12px;line-height:1.4;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:6px 10px;max-width:270px}
+nav.main{background:var(--brand);position:sticky;top:0;z-index:40}
+nav.main .wrap{display:flex;gap:2px;overflow-x:auto;padding-top:0;padding-bottom:0}
+nav.main a{color:#fff;text-decoration:none;font:600 14px Inter,sans-serif;padding:13px 16px;white-space:nowrap;border-bottom:3px solid transparent}
+nav.main a:hover,nav.main a.on{background:rgba(255,255,255,.12);border-bottom-color:var(--accent)}
+.hero{background:linear-gradient(180deg,var(--h1),var(--h2));border-bottom:1px solid var(--line)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:32px;align-items:center;padding-top:34px;padding-bottom:38px}
+.hero h1{font:700 clamp(28px,4vw,40px)/1.18 Inter,sans-serif;max-width:620px;color:var(--text)}
+#greet{font-size:23px;margin:0 0 6px;color:var(--tagc);font-family:'Noto Sans Devanagari',Inter,sans-serif;font-weight:700}
+.hero .sub{margin:12px 0 20px;color:var(--muted);max-width:600px}
+.acts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.act{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:14px;color:var(--text);text-decoration:none;transition:box-shadow .2s,transform .2s}
+.act:hover{box-shadow:0 6px 18px rgba(30,27,75,.14);transform:translateY(-2px)}
+.act .i{flex:none;width:40px;height:40px;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:var(--tagc)}
+.act b{display:block;font-size:15px}.act small{color:var(--muted);font-size:13px}
+.kpis{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 16px;min-width:120px}
+.kpi b{display:block;font:700 24px Inter,sans-serif;color:var(--tagc)}
+.kpi span{font-size:13px;color:var(--muted)}
+.hv{display:flex;flex-direction:column;gap:12px}
+.bub{align-self:flex-start;display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px 14px 14px 4px;padding:9px 14px;font:500 15px Inter,'Noto Sans Devanagari',sans-serif;box-shadow:0 2px 8px rgba(30,27,75,.08)}
+.bub:nth-child(2){align-self:center}.bub:nth-child(3){align-self:flex-end;border-radius:14px 14px 4px 14px}
+.bub i{font:700 11px Inter,sans-serif;font-style:normal;background:var(--soft);border-radius:4px;padding:2px 6px;color:var(--tagc)}
+.arrow{text-align:center;font-size:13px;color:var(--muted)}
+.tk{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 6px 20px rgba(30,27,75,.1)}
+.tk .h{display:flex;justify-content:space-between;align-items:center;gap:8px}.tk .h b{font:700 16px Inter,sans-serif}
+.tk .h em{font:600 12px Inter,sans-serif;font-style:normal;background:var(--soft);padding:3px 10px;border-radius:99px}
+.tk p{margin:6px 0 0;font-size:14px;color:var(--muted)}.tk .steps{margin-bottom:0}
+.secthead{margin:44px 0 6px}.secthead+.note{margin:0 0 16px;font-size:15px}
+.hw{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.hw .card{border-top:3px solid var(--brand)}.hw .n{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--hot);text-transform:uppercase}
+.hw h3{font-size:17px;margin:6px 0}.hw p{margin:0;color:var(--muted);font-size:15px}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.ways div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;text-align:center;font-weight:600;font-size:15px}
+.ways span{display:block;font-size:26px;margin-bottom:6px}
+footer.foot{background:#1e1b4b;color:#e4e2ff;padding:0;margin-top:48px}
+.foot .fg3{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px;padding-top:32px;padding-bottom:24px}
+.foot h3{font-size:15px;color:#fff;margin-bottom:10px}.foot a{display:block;color:#e4e2ff;text-decoration:none;font-size:14px;margin:6px 0}.foot a:hover{text-decoration:underline}
+.foot p{margin:0;font-size:14px;line-height:1.55}
+.foot .copy{border-top:1px solid rgba(255,255,255,.15);padding-top:14px;padding-bottom:20px;font-size:13px;color:#c3c1ea}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.foot .fg3{grid-template-columns:1fr}.proto{display:none}}
+@media(max-width:480px){.logo .t{font-size:20px}.logo small{display:none}}
+
+/* ===== Colour + motion layer ===== */
+nav.main{background:linear-gradient(90deg,#4338ca,#6d28d9 55%,#0f766e);background-size:200% 100%;animation:pan 14s ease-in-out infinite alternate}
+@keyframes pan{to{background-position:100% 0}}
+.btn{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e1b4b;transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(245,158,11,.35);filter:brightness(1.05)}
+.btn.alt,.btn.alt:hover{background:var(--soft)}.btn.alt{color:var(--text)}
+.btn.alt:hover{box-shadow:0 4px 12px rgba(67,56,202,.18)}
+.util .btn.alt.sm{background:transparent;color:#fff}.util .btn.alt.sm:hover{background:#fff;color:#1e1b4b}
+.tabs button[aria-selected="true"]{background:linear-gradient(135deg,#4338ca,#6d28d9);border-color:transparent}
+.me{background:linear-gradient(135deg,#4338ca,#6d28d9)}
+.card{transition:box-shadow .25s,transform .25s,border-color .25s}
+.card:hover{border-color:#a5b4fc}
+.hero{position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+.hero:before{width:380px;height:380px;background:#a5b4fc;top:-120px;right:8%}
+.hero:after{width:320px;height:320px;background:#5eead4;bottom:-140px;left:30%;animation-delay:-6s;opacity:.4}
+@keyframes drift{to{transform:translate(-50px,40px) scale(1.15)}}
+.hero .wrap{position:relative;z-index:1}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+.hero .wrap>div:first-child>*{animation:rise .7s cubic-bezier(.2,.7,.1,1) both}
+.hero .wrap>div:first-child>*:nth-child(2){animation-delay:.08s}.hero .wrap>div:first-child>*:nth-child(3){animation-delay:.16s}.hero .wrap>div:first-child>*:nth-child(4){animation-delay:.26s}.hero .wrap>div:first-child>*:nth-child(5){animation-delay:.36s}.hero .wrap>div:first-child>*:nth-child(6){animation-delay:.46s}
+.hl{background:linear-gradient(90deg,#4338ca,#0d9488,#7c3aed,#4338ca);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:250% 0}}
+:root[data-theme="dark"] .hl{background-image:linear-gradient(90deg,#a5b4fc,#5eead4,#c4b5fd,#a5b4fc)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .hl{background-image:linear-gradient(90deg,#a5b4fc,#5eead4,#c4b5fd,#a5b4fc)}}
+.act{border-top-color:#fbbf24}.act .i{background:linear-gradient(135deg,#e0e7ff,#ccfbf1);color:#4338ca;transition:transform .35s}
+.act:hover .i{transform:rotate(-8deg) scale(1.1)}
+.kpi{animation:pop .5s cubic-bezier(.2,.7,.1,1) both}.kpi:nth-child(2){animation-delay:.1s}.kpi:nth-child(3){animation-delay:.2s}
+.kpi b{background:linear-gradient(135deg,#4338ca,#0d9488);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hv .bub{animation:pop .6s cubic-bezier(.2,.7,.1,1) both,bob 5s ease-in-out infinite}
+.hv .bub:nth-child(1){animation-delay:.4s,1s}.hv .bub:nth-child(2){animation-delay:.9s,2s}.hv .bub:nth-child(3){animation-delay:1.4s,3s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.arrow{animation:rise .6s 1.8s both}.arrow:before{content:"";display:block}
+.tk{animation:pop .7s 2s cubic-bezier(.2,.7,.1,1) both;border-top:3px solid #0d9488}
+.tk .h em{transition:background .4s,color .4s}
+.tk .steps li span{transition:background .5s,transform .5s,color .5s}
+.tk .steps li.cur span{animation:pulse2 1.6s infinite}
+@keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(251,191,36,.7)}100%{box-shadow:0 0 0 12px rgba(251,191,36,0)}}
+.tk .steps li.done span{background:#0d9488;color:#fff;border-color:#0d9488}
+.tk .steps li.cur span{background:#fbbf24;color:#1e1b4b}
+.msg{animation:rise .35s both}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.1,1),transform .7s cubic-bezier(.2,.7,.1,1)}
+.rv.in{opacity:1;transform:none}
+.hw .card{border-top-color:#0d9488}.hw .card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(67,56,202,.15)}
+.hw .card:nth-child(2){border-top-color:#4338ca}.hw .card:nth-child(3){border-top-color:#7c3aed}.hw .card:nth-child(4){border-top-color:#f59e0b}
+.ways div{transition:transform .25s,box-shadow .25s}.ways div:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(67,56,202,.15)}
+.ways span{transition:transform .3s}.ways div:hover span{transform:scale(1.25) rotate(-6deg)}
+footer.foot{background:linear-gradient(135deg,#1e1b4b,#312e81 60%,#134e4a)}
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#fbbf24,#0d9488,#6d28d9);z-index:200;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hl{-webkit-text-fill-color:currentColor;color:inherit;background:none}}
+
+.scene{display:flex;align-items:flex-end;gap:12px}
+.gwrap{flex:none;width:min(210px,44%);text-align:center}
+.girl{display:block;width:100%;height:auto;animation:bob 6s ease-in-out infinite}
+.gpill{margin:6px 0 0;display:inline-block;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:5px 12px;font:600 12px Inter,'Noto Sans Devanagari',sans-serif;color:var(--tagc)}
+.say{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px;padding-bottom:36px}
+.say .bub{max-width:100%}
+.tw{transform-box:fill-box;transform-origin:center;animation:tw 2.4s ease-in-out infinite}@keyframes tw{50%{transform:scale(.4) rotate(40deg);opacity:.5}}
+.probs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+.pc:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(67,56,202,.15)}
+.pc svg{display:block;width:100%;height:auto}.pc div{padding:12px 14px}.pc b{display:block;font-size:15px}.pc small{color:var(--muted);font-size:13px}
+.flk{animation:flk 2.4s steps(1) infinite}@keyframes flk{0%,60%,100%{opacity:1}64%{opacity:.1}70%{opacity:.9}76%{opacity:.1}}
+.fly{transform-box:fill-box;transform-origin:center;animation:fly 3s ease-in-out infinite}@keyframes fly{50%{transform:translate(8px,-6px)}}
+.dr{animation:drip 1.6s ease-in infinite}@keyframes drip{0%{transform:translateY(-4px);opacity:0}25%{opacity:1}100%{transform:translateY(40px);opacity:0}}
+@media(max-width:480px){.scene{flex-direction:column;align-items:center}.say{width:100%;padding-bottom:0}}
+
+dialog#locDlg{border:1px solid var(--line);border-radius:12px;padding:22px;max-width:440px;width:calc(100% - 32px);background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(30,27,75,.35)}
+dialog#locDlg::backdrop{background:rgba(30,27,75,.55);backdrop-filter:blur(2px)}
+dialog#locDlg[open]{animation:pop .3s cubic-bezier(.2,.7,.1,1)}
+#locDlg select{width:100%}
+.area-summary .btn{flex:none}
+.girl #ec,.girl #eo{transition:opacity .3s}
+#burst{transform-box:fill-box;transform-origin:center;opacity:0}
+#burst.go{animation:burst .8s ease-out}
+@keyframes burst{from{transform:scale(.4);opacity:.95}to{transform:scale(3.2);opacity:0}}
+.gpill{transition:background .3s,color .3s}.gpill.on{background:var(--brand);color:#fff;border-color:transparent}
+</style>
+</head>
+<body>
+<div id="prog" aria-hidden="true"></div>
+<a class="skip" href="#main-content">Skip to main content</a>
+<div class="util"><div class="wrap"><div class="g"><span class="fz" role="group" aria-label="Text size"><button type="button" id="fzm" aria-label="Decrease text size">A-</button> <button type="button" id="fzr" aria-label="Reset text size">A</button> <button type="button" id="fzp" aria-label="Increase text size">A+</button></span><span>हिन्दी · English</span></div>
+<div class="g"><span class="who" id="who"></span><button class="btn alt sm" id="acct" type="button">Log in / Sign up</button><button class="btn alt sm" id="th" type="button">Dark mode</button></div></div></div>
+<div class="bbar"><div class="wrap"><a class="logo" href="#" data-home aria-label="Dhawani home"><svg width="40" height="32" viewBox="0 0 36 28" aria-hidden="true"><g fill="#fbbf24"><rect class="wv" x="2" y="10" width="4" height="8" rx="2"/><rect class="wv" x="10" y="4" width="4" height="20" rx="2" style="animation-delay:.15s"/><rect class="wv" x="18" y="0" width="4" height="28" rx="2" style="animation-delay:.3s"/><rect class="wv" x="26" y="6" width="4" height="16" rx="2" style="animation-delay:.45s"/></g></svg><span><span class="t">Dhawani <span id="bscript" aria-hidden="true" style="font:600 18px 'Noto Sans Devanagari',sans-serif">ध्वनि</span></span><small>Multilingual Citizen Grievance Redressal</small></span></a>
+<p class="proto"><b>Prototype.</b> A hackathon demo, not an official government service.</p></div></div>
+<nav class="main" aria-label="Primary"><div class="wrap"><a href="#" data-home class="on">Home</a><a href="#citizen" data-tab>Report a grievance</a><a href="#track" data-tab>Track a grievance</a><a href="#officials" data-tab>Officials</a><a href="#how" data-sec>How it works</a><a href="#story" data-sec>About Dhawani</a></div></nav>
+<section class="hero" aria-label="Welcome"><div class="wrap"><div>
+<p id="greet" aria-hidden="true">नमस्ते</p>
+<p class="tag"></p>
+<h1>Speak in your language. <span class="hl">Get your problem fixed.</span></h1>
+<p class="sub">Dhawani means “voice”. Report a civic problem in Hindi or English by text, voice or photo. It becomes a routed, trackable ticket in seconds.</p>
+<div class="acts"><a class="act" href="#citizen" data-tab><span class="i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H8l-4 4z"/></svg></span><span><b>Report</b><small>File a grievance</small></span></a><a class="act" href="#track" data-tab><span class="i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg></span><span><b>Track</b><small>Check ticket status</small></span></a><a class="act" href="#officials" data-tab><span class="i" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span><span><b>Officials</b><small>Dashboard</small></span></a></div>
+<div class="kpis" id="kpis"></div></div>
+<div class="hv"><div class="scene"><div class="gwrap"><svg class="girl" viewBox="0 0 240 300" role="img" aria-label="Illustration of a girl greeting with namaste">
+<circle cx="120" cy="150" r="118" fill="#e0e7ff"/>
+<path d="M72 118C64 34 176 34 168 118L176 236 64 236Z" fill="#2b1b3d"/>
+<path d="M72 300L78 192Q80 162 104 154L136 154Q160 162 162 192L168 300Z" fill="#0d9488"/>
+<path d="M92 158Q120 180 150 158L172 300 148 300Q126 224 92 158Z" fill="#4338ca"/>
+<path id="uaL" d="M88 172L72 222" stroke="#0f766e" stroke-width="20" stroke-linecap="round" fill="none"/><path id="uaR" d="M152 172L168 222" stroke="#0f766e" stroke-width="20" stroke-linecap="round" fill="none"/>
+<path id="faL" d="M72 222L110 186" stroke="#f0b48a" stroke-width="13" stroke-linecap="round" fill="none"/><path id="faR" d="M168 222L130 186" stroke="#f0b48a" stroke-width="13" stroke-linecap="round" fill="none"/>
+
+<rect x="108" y="130" width="24" height="30" rx="9" fill="#e8a878"/>
+<circle cx="120" cy="100" r="34" fill="#f0b48a"/>
+<path d="M85 102Q82 56 120 54Q158 56 155 102Q147 76 120 76Q95 76 85 102Z" fill="#2b1b3d"/>
+<g id="eo"><circle cx="110" cy="102" r="3" fill="#3a2433"/><circle cx="130" cy="102" r="3" fill="#3a2433"/></g><g id="ec" fill="none" stroke-linecap="round" stroke-width="2.5" stroke="#3a2433" opacity="0"><path d="M104 103q6 5 12 0"/><path d="M124 103q6 5 12 0"/></g><path d="M110 118q10 9 20 0" fill="none" stroke="#b4443a" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="100" cy="116" r="6" fill="#f28b82" opacity=".35"/><circle cx="140" cy="116" r="6" fill="#f28b82" opacity=".35"/>
+<circle cx="120" cy="82" r="3" fill="#dc2626"/><circle cx="85" cy="114" r="3.5" fill="#fbbf24"/><circle cx="155" cy="114" r="3.5" fill="#fbbf24"/>
+<circle id="burst" cx="120" cy="184" r="14" fill="none" stroke="#fbbf24" stroke-width="3"/><path id="hL" d="M120 158C106 168 104 188 120 206Z" fill="#f0b48a" stroke="#c98a62" stroke-width="1.5" stroke-linejoin="round"/><path id="hR" d="M120 158C134 168 136 188 120 206Z" fill="#f0b48a" stroke="#c98a62" stroke-width="1.5" stroke-linejoin="round"/>
+<path class="tw" d="M32 64l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#fbbf24"/><path class="tw" style="animation-delay:.9s" d="M206 50l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#0d9488"/><path class="tw" style="animation-delay:1.7s" d="M196 190l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#4338ca"/>
+</svg><p class="gpill" id="gpill"><span lang="hi">नमस्ते</span> · Namaste</p></div><div class="say" aria-hidden="true"><span class="bub"><i>HI</i>स्ट्रीट लाइट खराब है</span><span class="bub"><i>EN</i>Garbage not collected</span><span class="bub"><i>HI</i>सड़क पर गड्ढा है</span></div></div><div class="arrow" aria-hidden="true">↓ understood, categorised and routed</div><div class="tk" aria-hidden="true"><div class="h"><b>Sample ticket</b><em>Assigned</em></div><p>Street light not working · Gandhi Nagar</p><ol class="steps"><li class="done"><span>✓</span>Registered</li><li class="cur"><span>2</span>Assigned</li><li><span>3</span>In progress</li><li><span>4</span>Resolved</li></ol></div></div>
+</div></section>
+<main class="wrap" id="main-content" tabindex="-1">
+<div class="tabs" id="tabs" role="tablist" hidden>
+<button role="tab" aria-selected="true" data-tab="citizen">Citizen chat</button>
+<button role="tab" aria-selected="false" data-tab="track">Track a ticket</button>
+<button role="tab" aria-selected="false" data-tab="officials">Officials dashboard</button>
+<button role="tab" aria-selected="false" data-tab="account">Account</button>
+</div>
+
+<section id="citizen" class="grid2">
+<div class="card">
+<div class="complaint-head"><div><p class="tag" style="margin-bottom:5px">CITIZEN SERVICE DESK</p><h2 style="margin:0">Report a civic issue</h2><p class="note" style="margin:5px 0 0">Describe what happened. Dhawani will identify the issue and route your ticket.</p></div><span class="secure-pill">● Secure demo</span></div>
+<div id="gate"></div>
+<div class="area-summary" id="areaSummary"><span class="area-pin">⌖</span><span><b>Complaint area</b><small id="areaText">Your registered locality will appear here after sign in.</small></span><button type="button" class="btn alt sm" id="chgLoc" hidden style="margin-left:auto">Change location</button></div>
+<div id="log" aria-live="polite"></div>
+<form id="f" class="composer" autocomplete="off">
+<label for="in" class="composer-label">What problem are you facing?</label>
+<textarea id="in" aria-label="Type your complaint" rows="3" placeholder="Example: Street light has not been working near the bus stop for a week…"></textarea>
+<div class="composer-tools"><div class="tool-actions"><button type="button" class="btn alt" id="mic">🎙 Speak</button><button type="button" class="btn alt" id="phb">＋ Add photo</button></div><button type="submit" class="btn send-btn">Send complaint <span aria-hidden="true">→</span></button></div>
+</form>
+<input type="file" id="ph" accept="image/*" hidden>
+<div class="composer-foot"><span id="pv" class="note">You can write in Kannada, Hindi or English.</span><label class="note" for="vl">Voice language</label><select id="vl"><option value="kn-IN">Kannada</option><option value="hi-IN">Hindi</option><option value="en-IN">English</option></select><label class="note"><input type="checkbox" id="tts"> Read replies aloud</label></div>
+<p class="note" id="vnote">Voice works best in Chrome or Edge on HTTPS, with microphone permission and an internet connection.</p>
+</div>
+<div class="card">
+<h2>Speak to fix</h2>
+<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap"><button type="button" id="bigmic" class="bigmic" aria-label="Speak your complaint"><span class="ring"></span>Speak</button><div><button type="button" class="btn alt sm" id="demo1">Play demo</button><p class="note" id="lmsg" style="margin:6px 0 0">Choose a voice language below, then tap Speak. Allow microphone access when prompted.</p></div></div>
+<ol id="live" class="live" aria-live="polite"></ol><div id="liveact"></div>
+<h2 style="margin-top:24px">Try these</h2>
+<div class="try" id="try"></div>
+<p class="note" style="margin-top:12px">The demo recognises Kannada, Hindi and English scripts, uses rule-based keywords to suggest a category and urgency, and asks you to confirm before creating a ticket. This is not an AI model: photo analysis, live department routing and government integration are simulated and require a secure backend in a production build.</p>
+</div>
+</section>
+
+<section id="track" hidden>
+<div class="card"><h2>Track a ticket</h2>
+<form id="tf" class="row" style="margin-top:0" autocomplete="off"><input type="text" id="tid" aria-label="Ticket ID" placeholder="GRV-1020"><button class="btn" type="submit">Track</button></form>
+<div id="tres" style="margin-top:16px"><p class="note">Enter a ticket ID. Try GRV-1020 to see neighbours backing a report, or GRV-1019 (resolved) for the before and after view.</p></div></div>
+</section>
+
+<section id="officials" hidden>
+<div id="alert"></div>
+<div class="stats" id="stats"></div>
+<div class="grid2" style="margin-bottom:20px">
+<div class="card"><h2>City map</h2><svg id="map" viewBox="0 0 300 300" role="img" aria-label="Ward map with complaint pins" style="width:100%;height:auto;max-width:460px;display:block;margin:0 auto"></svg><p class="note">Demo-only ward grid (not GPS or official ward boundaries). Darker wards have more open reports. Red pins are high urgency.</p></div>
+<div class="card"><h2>Open issues by category</h2><div id="bars"></div><h2 style="margin-top:16px">Duplicate clusters</h2><div id="clus"></div></div>
+</div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><h2 style="margin:0">All tickets</h2><button class="btn alt sm" id="csv" type="button">Copy as CSV</button></div><div class="row"><input type="text" id="q" aria-label="Search tickets" placeholder="Search by ID, place or issue"><select id="sf" aria-label="Filter by status"><option value="">All statuses</option><option>Registered</option><option>Assigned</option><option>In progress</option><option>Resolved</option></select></div>
+<div class="twrap" style="margin-top:12px"><table><thead><tr><th>Ticket</th><th>Issue</th><th>Place</th><th>Urgency</th><th>Department</th><th>Age</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="note" id="cnote">Tickets unresolved after 3 days are flagged as escalated.</p></div>
+</section>
+
+<section id="account" hidden></section>
+<h2 class="secthead" id="how">How Dhawani works</h2><p class="note">A simple, transparent path from your words to a resolved ticket.</p>
+<div class="hw"><div class="card"><span class="n">Step 01</span><h3>Report</h3><p>Type, speak or add a photo in Hindi or English.</p></div><div class="card"><span class="n">Step 02</span><h3>Understand &amp; confirm</h3><p>Dhawani detects the language, issue, place and urgency, then asks you to confirm.</p></div><div class="card"><span class="n">Step 03</span><h3>Route</h3><p>The ticket goes to the concerned department and appears on the officials dashboard.</p></div><div class="card"><span class="n">Step 04</span><h3>Track resolution</h3><p>Follow status updates with your ticket ID until the issue is resolved.</p></div></div>
+<h2 class="secthead">Problems Dhawani helps with</h2><p class="note">Describe it in your own language. Dhawani works out the issue, place and urgency.</p><div class="probs"><div class="pc"><svg viewBox="0 0 220 130" role="img" aria-label="Illustration of a pothole on a road"><rect width="220" height="130" fill="#e0e7ff"/><polygon points="0,52 60,52 0,130" fill="#86efac"/><polygon points="160,52 220,52 220,130" fill="#86efac"/><polygon points="0,130 220,130 160,52 60,52" fill="#475569"/><path d="M110 128V54" stroke="#fff" stroke-width="3" stroke-dasharray="9 8"/><ellipse cx="110" cy="102" rx="34" ry="11" fill="#1e1b4b" stroke="#94a3b8" stroke-width="2"/><path d="M172 120L162 120L169 90L175 90L182 120Z" fill="#f97316"/><rect x="165" y="100" width="14" height="5" fill="#fff"/></svg><div><b>Potholes</b><small><span lang="hi">सड़क पर गड्ढा</span></small></div></div><div class="pc"><svg viewBox="0 0 220 130" role="img" aria-label="Illustration of a broken streetlight at dusk"><rect width="220" height="130" fill="#312e81"/><circle cx="182" cy="30" r="13" fill="#fde68a"/><rect x="108" y="30" width="6" height="90" fill="#94a3b8"/><path d="M111 32Q111 14 88 14" stroke="#94a3b8" stroke-width="5" fill="none"/><ellipse cx="84" cy="18" rx="11" ry="4.5" fill="#64748b"/><g class="flk" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"><path d="M70 30l-5 6"/><path d="M84 32v8"/><path d="M98 30l5 6"/></g><rect y="118" width="220" height="12" fill="#1e1b4b"/></svg><div><b>Streetlights</b><small><span lang="hi">स्ट्रीट लाइट</span></small></div></div><div class="pc"><svg viewBox="0 0 220 130" role="img" aria-label="Illustration of an overflowing garbage bin"><rect width="220" height="130" fill="#fef3c7"/><rect y="116" width="220" height="14" fill="#cbd5e1"/><circle cx="92" cy="46" r="13" fill="#334155"/><circle cx="118" cy="40" r="15" fill="#475569"/><circle cx="140" cy="50" r="10" fill="#1e293b"/><path d="M82 58L138 58L132 118L88 118Z" fill="#16a34a"/><rect x="76" y="50" width="68" height="10" rx="4" fill="#15803d"/><g class="fly" fill="#475569"><circle cx="64" cy="34" r="2"/><circle cx="162" cy="30" r="2"/><circle cx="170" cy="48" r="2"/></g><rect x="40" y="108" width="12" height="6" rx="2" fill="#ef4444"/><rect x="170" y="110" width="14" height="5" rx="2" fill="#3b82f6"/></svg><div><b>Garbage</b><small><span lang="hi">कचरा</span></small></div></div><div class="pc"><svg viewBox="0 0 220 130" role="img" aria-label="Illustration of a leaking water pipe"><rect width="220" height="130" fill="#dbeafe"/><rect y="116" width="220" height="14" fill="#94a3b8"/><rect x="14" y="40" width="192" height="18" rx="4" fill="#64748b"/><rect x="98" y="34" width="24" height="30" rx="3" fill="#475569"/><ellipse cx="110" cy="119" rx="52" ry="8" fill="#38bdf8" opacity=".65"/><g fill="#38bdf8"><ellipse class="dr" cx="110" cy="72" rx="3.5" ry="6"/><ellipse class="dr" style="animation-delay:.5s" cx="106" cy="72" rx="3" ry="5"/><ellipse class="dr" style="animation-delay:1s" cx="114" cy="72" rx="3" ry="5"/></g></svg><div><b>Water leakage</b><small><span lang="hi">पानी का रिसाव</span></small></div></div></div><h2 class="secthead">Ways to report</h2><div class="ways"><div><span aria-hidden="true">✍</span>Text</div><div><span aria-hidden="true">🎙</span>Voice</div><div><span aria-hidden="true">📷</span>Photo</div><div><span aria-hidden="true">🌐</span>3 languages</div></div>
+<section class="info" id="story">
+<h2>Meet Lakshmi</h2>
+<div class="card" style="margin-bottom:24px"><p class="note" style="margin:0 0 4px" id="sk"></p><h3 id="st" style="font-size:20px"></h3><p id="sb" style="margin:8px 0 12px"></p><div class="row" style="align-items:center;margin-top:0"><button class="btn alt sm" id="sp" type="button">Back</button><button class="btn sm" id="sn" type="button">Next</button><span class="note" id="sd"></span></div><p class="note" style="margin:12px 0 0">A fictional story to show the impact. It is not a real case.</p></div>
+<h2>How it is built</h2>
+<div class="grid3">
+<div class="card"><h3 style="font-size:18px">Pipeline</h3><p class="note" style="font-size:15px;margin:6px 0 0">Citizen channel → language detection and speech-to-text → LLM extraction → confirmation → ticket database → department router → dashboard.</p></div>
+<div class="card"><h3 style="font-size:18px">Roadmap</h3><p class="note" style="font-size:15px;margin:6px 0 0">Claude API extraction, Bhashini speech and translation, WhatsApp and Telegram bots, a real vision model, SMS and missed-call access, CPGRAMS integration.</p></div>
+<div class="card"><h3 style="font-size:18px">Privacy</h3><p class="note" style="font-size:15px;margin:6px 0 0">Minimal data: the complaint, an approximate place and a ticket ID. No names or phone numbers are needed. Low-confidence cases are confirmed with the citizen.</p></div>
+</div>
+</section>
+</main>
+<dialog id="locDlg" aria-labelledby="locT"><form id="locF" autocomplete="off"><h2 id="locT">Change your complaint area</h2><p class="note" style="margin:0 0 4px">New complaints will be routed to the local authority for this area.</p>
+<div class="fld"><label for="lstate">State</label><select id="lstate"></select></div><div class="fld"><label for="lcity">City</label><select id="lcity" disabled></select></div><div class="fld"><label for="llocality">Locality / Area</label><select id="llocality" disabled></select></div>
+<div class="fld" id="lotherw" hidden><label for="lother">Your locality</label><input type="text" id="lother" maxlength="60"></div>
+<p class="note" id="lerr" role="alert" style="color:var(--bad);min-height:1.2em"></p><div class="row"><button class="btn" type="submit">Save location</button><button class="btn alt" type="button" id="lcancel">Cancel</button></div></form></dialog>
+<footer class="foot"><div class="wrap fg3"><div><h3>Dhawani · ध्वनि</h3><p>Multilingual citizen grievance redressal. Hackathon prototype: demo tickets are saved in this browser; account and ticket data are not shared with a government department. Not an official government service.</p></div><div><h3>Quick links</h3><a href="#citizen" data-tab>Report a grievance</a><a href="#track" data-tab>Track a grievance</a><a href="#how" data-sec>How it works</a></div><div><h3>Logins</h3><a href="#account" data-tab>Citizen login</a><a href="#account" data-tab>Official login</a></div></div><div class="wrap copy">Dhawani prototype · Sample data only</div></footer>
+
+<script>
+// Demo location directory: representative localities for five Indian states.
+// Replace/extend this sample data with an official city/locality directory for production.
+var INDIA_LOCATIONS={
+'Karnataka':{'Bengaluru':['Indiranagar','Koramangala','Whitefield','Jayanagar','Malleshwaram','Rajajinagar','Electronic City','HSR Layout'],'Hubballi-Dharwad':['Vidya Nagar','Keshwapur','Deshpande Nagar','Gokul Road','Unkal','Old Hubballi','Navanagar','Dharwad'],'Mysuru':['Vijayanagar','Kuvempunagar','Saraswathipuram','Hebbal','Nazarbad','Jayalakshmipuram']},
+'Maharashtra':{'Mumbai':['Andheri','Bandra','Dadar','Borivali','Kurla','Powai','Colaba'],'Pune':['Kothrud','Hinjawadi','Hadapsar','Baner','Wakad','Shivajinagar','Viman Nagar'],'Nagpur':['Dharampeth','Manish Nagar','Sadar','Mahal','Trimurti Nagar']},
+'Telangana':{'Hyderabad':['Madhapur','Gachibowli','Kukatpally','Ameerpet','Secunderabad','LB Nagar','Charminar'],'Warangal':['Hanamkonda','Kazipet','Subedari','Balasamudram','Warangal Fort area']},
+'Tamil Nadu':{'Chennai':['Adyar','Anna Nagar','T. Nagar','Velachery','Tambaram','Mylapore','Perungudi'],'Coimbatore':['Gandhipuram','RS Puram','Peelamedu','Saibaba Colony','Singanallur']},
+'Rajasthan':{'Jaipur':['Malviya Nagar','Vaishali Nagar','Mansarovar','Jagatpura','C-Scheme','Bani Park'],'Jodhpur':['Sardarpura','Paota','Ratanada','Shastri Nagar','Mandore']}
+};
+function fillCities(state){var c=$('acity');if(!c)return;c.innerHTML='<option value="">Select city</option>';Object.keys(INDIA_LOCATIONS[state]||{}).forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;c.appendChild(o)});fillLocalities('')}
+function fillLocalities(city){var l=$('alocality');if(!l)return;l.innerHTML='<option value="">Select locality / area</option>';var state=$('astate').value;((INDIA_LOCATIONS[state]||{})[city]||[]).forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;l.appendChild(o)});var other=document.createElement('option');other.value='Other / not listed';other.textContent='Other / not listed';l.appendChild(other)}
+var CATS={
+streetlight:{kw:['street light','streetlight','lamp post','batti','ಸ್ಟ್ರೀಟ್ ಲೈಟ್','ಬೀದಿ ದೀಪ','ದೀಪ','ಸ್ಟ್ರೀಟ್','ಬत्ती'],dept:'Electricity dept',n:{en:'Street light',kn:'ಬೀದಿ ದೀಪ',hi:'स्ट्रीट लाइट'}},
+drainage:{kw:['drain','sewage','sewer','overflow','manhole','naali','ಚರಂಡಿ','ಒಳಚರಂಡಿ','ಮ್ಯಾನ್ ಹೋಲ್','ನೀರು ನಿಂತು','नाली','सीवर','मैनहोल'],dept:'Drainage and sewerage',n:{en:'Drainage',kn:'ಚರಂಡಿ',hi:'नाली'}},
+road:{kw:['pothole','road','crack','sadak','gundi','ಗುಂಡಿ','ರಸ್ತೆ','ರಸ್ತೆ ಗುಂಡಿ','गड्ढा','सड़क'],dept:'Roads and works',n:{en:'Road or pothole',kn:'ರಸ್ತೆ ಗುಂಡಿ',hi:'सड़क का गड्ढा'}},
+garbage:{kw:['garbage','trash','waste','dump','kachra','kasa','ಕಸ','ಕಸ ವಿಲೇವಾರಿ','ತ್ಯಾಜ್ಯ','ಕಸದ ರಾಶಿ','ಕಸ ತುಂಬಿದೆ','ಕಸ ಹಾಕಿದ್ದಾರೆ','ಕಸ ಇದೆ','कचरा','कूड़ा'],dept:'Solid waste management',n:{en:'Garbage',kn:'ಕಸ',hi:'कचरा'}},
+water:{kw:['water','pipe','leak','tap','borewell','paani','neeru','ನೀರು','ನೀರಿನ','ಪೈಪ್','ಸೋರಿಕೆ','ಕೊಳವೆ','ನೀರು ಬರುತ್ತಿಲ್ಲ','पानी','पाइप','नल'],dept:'Water board',n:{en:'Water supply',kn:'ನೀರು ಸರಬರಾಜು',hi:'पानी की आपूर्ति'}},
+electricity:{kw:['power','electric','wire','transformer','current','bijli','बिजली','तार','करंट'],dept:'Electricity dept',n:{en:'Electricity',kn:'ವಿದ್ಯುತ್',hi:'बिजली'}}};
+var DANGER=['open manhole','live wire','sparking','spark','fallen','accident','danger','fire','ತೆರೆದ ಮ್ಯಾನ್ ಹೋಲ್','ತೆರೆದ ಗುಂಡಿ','ವಿದ್ಯುತ್ ತಂತಿ ಬಿದ್ದಿದೆ','ತಂತಿ ಬಿದ್ದಿದೆ','ಬೆಂಕಿ','ಅಪಾಯ','ಅಪಾಯಕಾರಿ','खुला','खतरा','तार गिर','करंट'];
+var URG={high:{en:'High',kn:'ಹೆಚ್ಚು',hi:'उच्च'},medium:{en:'Medium',kn:'ಮಧ್ಯಮ',hi:'मध्यम'}};
+var ST=['Registered','Assigned','In progress','Resolved'];
+var STL={Registered:{kn:'ದಾಖಲಾಗಿದೆ',hi:'दर्ज'},Assigned:{kn:'ನಿಯೋಜಿಸಲಾಗಿದೆ',hi:'सौंपा गया'},'In progress':{kn:'ಪ್ರಗತಿಯಲ್ಲಿದೆ',hi:'प्रगति में'},Resolved:{kn:'ಪರಿಹರಿಸಲಾಗಿದೆ',hi:'हल हो गया'}};
+var SAMPLES=['Street light not working near Market Road since a week','ಗಾಂಧಿ ನಗರದ ಹತ್ತಿರ ನೀರಿನ ಪೈಪ್ ಸೋರಿಕೆಯಾಗುತ್ತಿದೆ','गांधी नगर के पास पानी का पाइप फट गया है','Open manhole near Station Road, very dangerous','status GRV-1020'];
+var tickets=[
+{id:'GRV-1020',cat:'water',loc:'Gandhi Nagar',ward:3,urg:'high',status:'In progress',age:4,mt:4},
+{id:'GRV-1021',cat:'water',loc:'Gandhi Nagar',ward:3,urg:'medium',status:'Assigned',age:2},
+{id:'GRV-1022',cat:'water',loc:'Gandhi Nagar',ward:3,urg:'medium',status:'Registered',age:1},
+{id:'GRV-1023',cat:'road',loc:'Temple Street',ward:5,urg:'medium',status:'Assigned',age:3},
+{id:'GRV-1024',cat:'drainage',loc:'Station Road',ward:2,urg:'high',status:'Registered',age:0},
+{id:'GRV-1019',cat:'garbage',loc:'Bazaar Lane',ward:7,urg:'medium',status:'Resolved',age:5},
+{id:'GRV-1018',cat:'streetlight',loc:'Lake View',ward:1,urg:'medium',status:'In progress',age:2}];
+var next=1025,photo=null;
+// Persist demo tickets in this browser so citizen submissions remain visible
+// to the official dashboard after tab changes or page refreshes.
+function loadSavedTickets(){
+ try{
+  var saved=JSON.parse(localStorage.getItem('dhawani_tickets')||'[]');
+  if(Array.isArray(saved)){
+   saved.forEach(function(t){if(t&&t.id&&!tickets.some(function(x){return x.id===t.id}))tickets.unshift(t)});
+  }
+  var maxNo=tickets.reduce(function(m,t){var n=parseInt(String(t.id||'').replace('GRV-',''),10);return isFinite(n)?Math.max(m,n):m},1024);
+  next=Math.max(next,maxNo+1);
+ }catch(e){console.warn('Could not load saved Dhawani tickets',e)}
+}
+function saveTickets(){
+ try{localStorage.setItem('dhawani_tickets',JSON.stringify(tickets.filter(function(t){return Number(String(t.id).replace('GRV-',''))>=1025})));}
+ catch(e){console.warn('Could not save Dhawani tickets',e)}
+}
+loadSavedTickets();
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function detect(t){if(/[\u0C80-\u0CFF]/.test(t))return'kn';if(/[\u0900-\u097F]/.test(t))return'hi';return'en'}
+function classify(t){var l=t.toLowerCase(),best=null,bs=0;for(var k in CATS){var score=0;CATS[k].kw.forEach(function(w){if(l.indexOf(w)>-1)score+=w.length>3?2:1});if(score>bs){bs=score;best=k}}return bs?best:null}
+function place(t){var m;
+if(m=t.match(/(?:near|at|opposite|behind|beside)\s+([A-Za-z0-9 .'’-]{3,28}?)(?:[,.]|\s+(?:for|since|is|has|are|from|very)\b|$)/i))return m[1].trim();
+if(m=t.match(/([\u0C80-\u0CFF]+(?:\s[\u0C80-\u0CFF]+){0,2})\s*(?:ಹತ್ತಿರ|ಬಳಿ|ಮುಂದೆ|ಬದಿಯಲ್ಲಿ)/))return m[1].trim();
+if(m=t.match(/([\u0900-\u097F]+(?:\s[\u0900-\u097F]+)?)\s*के\s*(?:पास|सामने)/))return m[1].trim();
+return null}
+function wardOf(t,loc){var m=t.match(/(?:ward|ವಾರ್ಡ್|वार्ड)\s*(?:no\.?\s*)?(\d{1,2})/i);if(m)return((+m[1]-1)%9)+1;var s=0,x=loc||'x';for(var i=0;i<x.length;i++)s+=x.charCodeAt(i);return s%9+1}
+function urgency(t){var l=t.toLowerCase();return DANGER.some(function(w){return l.indexOf(w)>-1})?'high':'medium'}
+var T={
+ask:{en:function(c,l){return'Did you mean a “'+c+'” issue'+(l?' near '+l:'')+'?'},kn:function(c){return'ನೀವು “'+c+'” ಸಮಸ್ಯೆಯನ್ನು ಹೇಳುತ್ತಿದ್ದೀರಾ?'},hi:function(c){return'क्या आप “'+c+'” की समस्या बता रहे हैं?'}},
+yn:{en:['Yes','No'],kn:['ಹೌದು','ಇಲ್ಲ'],hi:['हाँ','नहीं']},
+done:{en:function(c,u,id,d){return'Thank you. Ticket '+id+' is created and sent to '+d+'. Urgency: '+u+'. Send “status '+id+'” to track it.'},
+kn:function(c,u,id){return'ಧನ್ಯವಾದಗಳು. ನಿಮ್ಮ ದೂರು ದಾಖಲಾಗಿದೆ. ವಿಭಾಗ: '+c+', ತುರ್ತು: '+u+'. ಟಿಕೆಟ್ '+id+'. ಸ್ಥಿತಿ ತಿಳಿಯಲು “status '+id+'” ಕಳುಹಿಸಿ.'},
+hi:function(c,u,id){return'धन्यवाद। आपकी शिकायत दर्ज हो गई है। श्रेणी: '+c+', तात्कालिकता: '+u+'। टिकट '+id+'। स्थिति जानने के लिए “status '+id+'” भेजें।'}},
+unk:{en:'I couldn’t tell the issue type. Try: “street light not working near Market Road”.',kn:'ಸಮಸ್ಯೆ ಅರ್ಥವಾಗಲಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಬರೆಯಿರಿ.',hi:'समस्या समझ नहीं आई। कृपया दोबारा लिखें।'},
+nf:{en:'No ticket found with that ID.',kn:'ಆ ಟಿಕೆಟ್ ಸಿಗಲಿಲ್ಲ.',hi:'यह टिकट नहीं मिला।'}};
+function speak(t){try{if(!$('tts').checked||!window.speechSynthesis)return;var u=new SpeechSynthesisUtterance(t);u.lang={kn:'kn-IN',hi:'hi-IN',en:'en-IN'}[detect(t)];speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function add(text,who,chips){var d=document.createElement('div');d.className='msg '+who;d.textContent=text;
+if(chips){var c=document.createElement('div');c.className='chips';chips.forEach(function(x){var s=document.createElement('span');s.className='chip'+(x.hi?' hi':'');s.textContent=x.t;c.appendChild(s)});d.appendChild(c)}
+$('log').appendChild(d);$('log').scrollTop=1e6;if(who==='bot')speak(text);return d}
+function clusterCount(cat,ward){return tickets.filter(function(t){return t.cat===cat&&t.ward===ward&&t.status!=='Resolved'}).length}
+function handle(text){
+var lang=detect(text),m=text.match(/GRV-\d+/i);
+if(m&&(/status|ಸ್ಥಿತಿ|स्थिति/i.test(text)||text.trim().toUpperCase()===m[0].toUpperCase())){
+var t=tickets.filter(function(x){return x.id===m[0].toUpperCase()})[0];
+if(!t)return add(T.nf[lang],'bot');
+var s=lang==='en'?t.status:STL[t.status][lang];
+return add(lang==='kn'?'ಟಿಕೆಟ್ '+t.id+': '+s:lang==='hi'?'टिकट '+t.id+': '+s:'Ticket '+t.id+': '+t.status+'.','bot',[{t:CATS[t.cat].n[lang]},{t:t.loc||'—'},{t:'Link: #'+t.id}])}
+var cat=classify(text)||(photo?classify(photo.name):null);
+if(!cat)return add(T.unk[lang],'bot');
+var loc=place(text)||accountPlace(),c=CATS[cat];
+var d=add(T.ask[lang](c.n[lang],loc),'bot'),w=document.createElement('div');w.className='chips';
+[T.yn[lang][0],T.yn[lang][1]].forEach(function(lb,i){var b=document.createElement('button');b.type='button';b.className='btn sm'+(i?' alt':'');b.textContent=lb;
+b.onclick=function(){w.remove();add(lb,'me');if(i)setTimeout(function(){add(T.unk[lang],'bot')},350);else setTimeout(function(){afterConfirm(lang,cat,loc,text)},350)};w.appendChild(b)});
+d.appendChild(w)}
+function meToo(id){var t=tickets.filter(function(x){return x.id===id})[0],me=sess&&sess.id;if(!t)return'Ticket not found.';if(!canFile())return'Verify your account to back a ticket.';t.mtBy=t.mtBy||[];
+if(t.mtBy.indexOf(me)>-1)return'You already backed this ticket.';t.mtBy.push(me);t.mt=(t.mt||0)+1;saveTickets();render();return'Thanks. '+(1+t.mt)+' neighbours are now behind '+t.id+'.'}
+function afterConfirm(lang,cat,loc,text){var ward=wardOf(text,loc),dup=tickets.filter(function(t){return t.cat===cat&&t.ward===ward&&t.status!=='Resolved'})[0];
+if(!dup)return create(lang,cat,loc,text);
+var n=1+(dup.mt||0),d=add('A similar report, '+dup.id+', is already open in this area ('+n+' neighbour'+(n>1?'s':'')+'). Back it with “Me too”, or file a new ticket?','bot'),w=document.createElement('div');w.className='chips';
+[['Me too',function(){add(meToo(dup.id),'bot')}],['File new',function(){create(lang,cat,loc,text)}]].forEach(function(x,i){var b=document.createElement('button');b.type='button';b.className='btn sm'+(i?' alt':'');b.textContent=x[0];b.onclick=function(){w.remove();add(x[0],'me');setTimeout(x[1],300)};w.appendChild(b)});d.appendChild(w)}
+function create(lang,cat,loc,text){
+var ward=wardOf(text,loc),urg=urgency(text),id='GRV-'+(next++),c=CATS[cat],hasPh=!!photo;
+tickets.unshift({id:id,cat:cat,loc:loc||'Not given',ward:ward,urg:urg,status:'Registered',age:0,photo:hasPh,owner:sess&&sess.role!=='guest'?sess.id:null,state:sess&&sess.state||'',city:sess&&sess.city||'',locality:sess&&sess.locality||''});
+saveTickets();
+var n=clusterCount(cat,ward),chips=[{t:'Category: '+c.n.en},{t:'Place: '+(loc||'not given')},{t:'Ward '+ward},{t:'Urgency: '+URG[urg].en,hi:urg==='high'},{t:'→ '+c.dept+' (simulated)'}];
+if(hasPh)chips.push({t:'Photo attached (vision check simulated)'});
+if(n>1)chips.push({t:'Grouped with '+(n-1)+' similar report'+(n>2?'s':'')});
+if(!loc)chips.push({t:'Please share a landmark or pin'});
+chips.push({t:'Track: #'+id});
+photo=null;$('pv').textContent='';
+add(T.done[lang](c.n[lang],URG[urg][lang],id,c.dept),'bot',chips);render()}
+function canFile(){return!!(sess&&sess.verified)}
+function gateMsg(){var d=add('To file a complaint you need a verified account. Guests can browse the demo and track tickets, but cannot file.','bot'),w=document.createElement('div');w.className='chips';var b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='Sign up or verify';b.onclick=openAccount;w.appendChild(b);d.appendChild(w)}
+function send(text){text=text.trim();if(!text)return;if(!canFile()&&!/GRV-\d+/i.test(text)){add(text,'me');gateMsg();return}add(text,'me');var t=add('…','bot');t.classList.add('dots');setTimeout(function(){t.remove();handle(text)},600)}
+$('tres').addEventListener('input',function(e){if(e.target.type==='range'){var a=e.target.closest('.ba').querySelector('.baa');a.style.clipPath='inset(0 '+(100-e.target.value)+'% 0 0)'}});
+function scene(cat,fixed){var g='<rect width="400" height="200" fill="#CFE8F5"/><rect y="120" width="400" height="80" fill="#6B7280"/><rect y="150" width="400" height="4" fill="#E5E7EB" opacity=".6"/><rect x="20" y="60" width="70" height="60" fill="#B8C4CE"/><rect x="300" y="45" width="80" height="75" fill="#A9B7C2"/>';
+var x={road:fixed?'':'<ellipse cx="200" cy="165" rx="48" ry="14" fill="#1F2937"/><ellipse cx="200" cy="162" rx="40" ry="9" fill="#111827"/>',
+streetlight:'<rect x="196" y="40" width="8" height="100" fill="#374151"/><circle cx="200" cy="38" r="12" fill="'+(fixed?'#FDE047':'#6B7280')+'"/>'+(fixed?'<circle cx="200" cy="38" r="34" fill="#FDE047" opacity=".3"/>':''),
+water:fixed?'':'<ellipse cx="200" cy="160" rx="60" ry="12" fill="#3B82F6" opacity=".8"/><rect x="196" y="118" width="8" height="30" fill="#60A5FA"/>',
+garbage:fixed?'':'<circle cx="180" cy="145" r="16" fill="#78716C"/><circle cx="205" cy="140" r="20" fill="#A8A29E"/><circle cx="228" cy="148" r="13" fill="#57534E"/>',
+drainage:'<rect x="150" y="150" width="100" height="10" fill="#374151"/>'+(fixed?'':'<ellipse cx="200" cy="168" rx="70" ry="11" fill="#4B5563"/>'),
+electricity:'<rect x="196" y="40" width="8" height="100" fill="#374151"/><path d="M120 50 Q 200 '+(fixed?'50':'130')+' 280 50" stroke="#111827" stroke-width="3" fill="none"/>'};
+return'<svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;display:block" aria-hidden="true">'+g+(x[cat]||'')+'</svg>'}
+function baHtml(cat){return'<div class="ba" style="position:relative;aspect-ratio:2/1;max-width:560px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"><div style="position:absolute;inset:0">'+scene(cat,false)+'</div><div class="baa" style="position:absolute;inset:0;clip-path:inset(0 50% 0 0)">'+scene(cat,true)+'</div><span class="chip" style="position:absolute;left:8px;top:8px">After</span><span class="chip" style="position:absolute;right:8px;top:8px">Before</span><input type="range" min="0" max="100" value="50" aria-label="Before and after slider" style="position:absolute;left:10px;right:10px;bottom:6px;width:calc(100% - 20px)"></div>'}
+function trackShow(id){id=(id||'').trim().toUpperCase();var t=tickets.filter(function(x){return x.id===id})[0],o=$('tres');
+if(!t){o.innerHTML='<p class="note">No ticket found for “'+esc(id)+'”. Try GRV-1020.</p>';return}
+var idx=ST.indexOf(t.status),late=t.status!=='Resolved'&&t.age>=3;
+o.innerHTML='<h3 style="font-size:20px">'+t.id+' · '+CATS[t.cat].n.en+'</h3><p class="note" style="margin:4px 0">'+esc(t.loc)+(t.city&&t.state?' · '+esc(t.city)+', '+esc(t.state):'')+' · Ward '+t.ward+' · '+CATS[t.cat].dept+' · '+t.age+' day(s) old'+(t.photo?' · photo attached':'')+'</p>'
++'<ol class="steps">'+ST.map(function(s,i){return'<li class="'+(i<idx||idx===3?'done':i===idx?'cur':'')+'"><span>'+(i<idx||idx===3?'✓':i+1)+'</span>'+s+'</li>'}).join('')+'</ol>'
++(late?'<p class="chip hi" style="display:inline-block">Escalated to the department head</p>':'')
++'<p class="note" style="margin:8px 0">'+(1+(t.mt||0))+' neighbour'+(t.mt?'s':'')+' reported this. <span id="mtmsg"></span></p>'+(t.status!=='Resolved'?'<button class="btn alt sm" data-mt="'+t.id+'">Me too</button>':'<h3 style="font-size:18px;margin-top:16px">Before and after</h3>'+baHtml(t.cat)+'<p class="note">Illustration. A real build shows the citizen’s photo and the repair crew’s photo.</p>')
++'<p class="note">Shareable link: '+esc(location.href.split('#')[0])+'#'+t.id+'</p>'
++(t.status==='Resolved'?'<div class="row"><span>Was this resolved to your satisfaction?</span><button class="btn sm" data-fb="1">Yes</button><button class="btn alt sm" data-fb="0">No</button></div>':'')}
+$('tres').addEventListener('click',function(e){var m=e.target.closest('[data-mt]');if(m){var r=meToo(m.dataset.mt);trackShow(m.dataset.mt);$('mtmsg').textContent=r;return}var b=e.target.closest('[data-fb]');if(b)b.parentNode.innerHTML='<span>Thank you for your feedback.'+(b.dataset.fb==='0'?' We have reopened the ticket for review.':'')+'</span>'});
+function render(){
+var open=tickets.filter(function(t){return t.status!=='Resolved'}),hi=open.filter(function(t){return t.urg==='high'}),esc3=open.filter(function(t){return t.age>=3}),avg=open.length?(open.reduce(function(a,t){return a+t.age},0)/open.length).toFixed(1):'0';
+$('kpis').innerHTML=[[tickets.length,'tickets filed'],[3,'languages'],[Math.round(100*(tickets.length-open.length)/tickets.length)+'%','resolved']].map(function(k){return'<div class="kpi"><b>'+k[0]+'</b><span>'+k[1]+'</span></div>'}).join('');
+$('alert').innerHTML=esc3.length?'<div class="card alert">'+esc3.length+' ticket'+(esc3.length>1?'s':'')+' escalated after 3 days: '+esc3.map(function(t){return t.id}).join(', ')+'</div>':'';
+$('stats').innerHTML=[['Total',tickets.length],['Open',open.length],['High urgency',hi.length],['Avg age (days)',avg],['Resolved',tickets.length-open.length],['Me too votes',tickets.reduce(function(a,t){return a+(t.mt||0)},0)]].map(function(s){return'<div class="card stat"><b>'+s[1]+'</b>'+s[0]+'</div>'}).join('');
+var cnt={},mx=1;open.forEach(function(t){cnt[t.ward]=(cnt[t.ward]||0)+1});for(var k in cnt)mx=Math.max(mx,cnt[k]);
+var h='';for(var w=1;w<=9;w++){var c=cnt[w]||0,r=c/mx,x=((w-1)%3)*100,y=Math.floor((w-1)/3)*100;
+h+='<rect x="'+(x+2)+'" y="'+(y+2)+'" width="96" height="96" rx="8" style="fill:rgba(232,119,46,'+(c?0.15+0.75*r:0.04)+');stroke:var(--line)"/><text x="'+(x+10)+'" y="'+(y+18)+'">Ward '+w+'</text>'}
+open.forEach(function(t){var n=parseInt(t.id.slice(4),10),x=((t.ward-1)%3)*100+15+(n*37)%70,y=Math.floor((t.ward-1)/3)*100+28+(n*53)%62;
+h+='<circle cx="'+x+'" cy="'+y+'" r="5" style="fill:'+(t.urg==='high'?'var(--bad)':'var(--brand)')+';stroke:#fff;stroke-width:1.5"><title>'+t.id+' '+CATS[t.cat].n.en+'</title></circle>'});
+$('map').innerHTML=h;
+var bc={};open.forEach(function(t){bc[t.cat]=(bc[t.cat]||0)+1});
+$('bars').innerHTML=Object.keys(bc).map(function(k){return'<div class="bar"><span style="width:130px">'+CATS[k].n.en+'</span><i style="width:'+(bc[k]*40)+'px"></i><b>'+bc[k]+'</b></div>'}).join('')||'<p class="note">No open issues.</p>';
+var g={};open.forEach(function(t){var k=t.cat+'|'+t.ward;(g[k]=g[k]||[]).push(t)});
+$('clus').innerHTML=Object.keys(g).filter(function(k){return g[k].length>1}).map(function(k){var a=g[k];return'<p style="margin:4px 0"><b>'+a.length+' reports</b> of '+CATS[a[0].cat].n.en.toLowerCase()+' in ward '+a[0].ward+' ('+esc(a[0].loc)+') become one issue.</p>'}).join('')||'<p class="note">No duplicates yet.</p>';
+var q=($('q').value||'').toLowerCase(),sf=$('sf').value;$('rows').innerHTML=tickets.filter(function(t){return(!sf||t.status===sf)&&(!q||(t.id+' '+t.loc+' '+CATS[t.cat].n.en).toLowerCase().indexOf(q)>-1)}).map(function(t){var e=t.status!=='Resolved'&&t.age>=3;
+return'<tr><td><a href="#'+t.id+'" style="color:var(--text)"><b>'+t.id+'</b></a>'+(e?'<br><span class="chip hi">Escalated</span>':'')+'</td><td>'+CATS[t.cat].n.en+(t.mt?' <span class="chip">+'+t.mt+' me too</span>':'')+'</td><td>'+esc(t.loc)+'</td><td>'+(t.urg==='high'?'<span class="chip hi">High</span>':'Medium')+'</td><td>'+CATS[t.cat].dept+'</td><td>'+t.age+'d</td><td><select data-id="'+t.id+'" aria-label="Status of '+t.id+'">'+ST.map(function(s){return'<option'+(s===t.status?' selected':'')+'>'+s+'</option>'}).join('')+'</select></td></tr>'}).join('')}
+var isAdmin=false,mem={},sess=null,entered=false,aNote='',aMode='signup',otp='';
+function sget(k){try{return localStorage.getItem(k)}catch(e){return mem[k]||null}}
+function sset(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}}
+function users(){try{return JSON.parse(sget('jv_users')||'[]')}catch(e){return[]}}
+function saveUser(u){sset('jv_users',JSON.stringify(users().map(function(x){return x.id===u.id?u:x})))}
+function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')}
+function hashPw(pw,salt){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+pw)).then(hex)}
+function newOtp(){otp=String(Math.floor(100000+Math.random()*900000))}
+function isReal(){return!!(sess&&sess.role!=='guest')}
+function isOff(){return!!(sess&&sess.role==='official'&&sess.verified)}
+function accountPlace(){return sess&&sess.locality?([sess.locality,sess.city,sess.state].filter(Boolean).join(', ')):null}
+function updateWho(){$('who').textContent=!sess?'':sess.role==='guest'?'Guest':'Hi, '+sess.name.split(' ')[0]+(sess.verified?' · Verified':' · Unverified');$('acct').textContent=entered?'Account':'Sign up';var a=$('areaText');if(a)a.textContent=accountPlace()||'Sign in and add your area in your account profile.';}
+function updateGate(){var g=$('gate');if(canFile()){g.innerHTML='';return}
+var m=!isReal()?'You’re browsing as a guest. Sign up and verify your account to file a complaint. You can still track tickets.':sess.role==='official'?'Your official account is pending review. You can file complaints once it is verified.':'Verify your account to file a complaint.';
+g.innerHTML='<div class="card alert" style="font-weight:500;margin-bottom:12px;padding:12px 16px">'+m+' <button class="btn sm" data-a="acct">Open account</button></div>'}
+function setSess(u){sess=u;entered=!!u;sset('jv_sess',u&&u.verified!==undefined&&/^u\d/.test(u.id)?u.id:'');updateWho();updateGate()}
+function go(n){location.hash=n;showTab(n)}
+function openAccount(){aNote='';if(!isReal())aMode='signup';else if(sess.role==='citizen'&&!sess.verified){aMode='verify';newOtp()}go('account')}
+function adminCard(){return isAdmin?'<div class="card" style="border-color:var(--accent);margin-bottom:16px"><b>Admin access</b><p class="note" style="margin:4px 0 8px">You own this page, so you can skip verification. Nobody else sees this card.</p><div class="row" style="margin-top:0"><button class="btn sm" data-a="adm">Enter as government official</button><button class="btn alt sm" data-a="admc">Enter as verified citizen</button></div></div>':''}
+function pendingList(){var l=users().filter(function(u){return u.role==='official'&&!u.verified});
+return'<h3 style="font-size:18px;margin-top:8px">Official requests waiting for approval</h3>'+(l.length?l.map(function(u){return'<div class="card" style="margin:8px 0;padding:12px"><b>'+esc(u.name)+'</b> · '+esc(u.dept||'')+'<br><span class="note">'+esc(u.contact)+' · ID '+esc(u.empId||'')+' · proof: '+esc((u.proof&&u.proof.name)||'none')+'</span><div class="row" style="margin-top:8px"><button class="btn sm" data-a="apu" data-u="'+u.id+'">Approve</button><button class="btn alt sm" data-a="rju" data-u="'+u.id+'">Reject</button></div></div>'}).join(''):'<p class="note">No pending requests in this browser.</p>')}
+function renderAcct(){var h,su=aMode==='signup';
+var side='<div class="card" style="background:#1e1b4b;color:#fff;border-color:#1e1b4b"><h2>Join Dhawani</h2><ul style="padding-left:18px;margin:0;line-height:1.7"><li>Verified citizens can file and track complaints in their own language.</li><li>Guests can look around and track tickets, but cannot file complaints.</li><li>Government officials are verified with a government ID and an official email before they get the dashboard.</li></ul></div>';
+if(isReal()&&sess.role==='citizen'&&!sess.verified){
+h='<div class="card" style="max-width:480px;margin:0 auto"><h2>Verify your account</h2><p style="margin:0 0 12px">Enter the 6-digit code sent to <b>'+esc(sess.contact)+'</b>'+(sess.phone?' and <b>'+esc(sess.phone)+'</b>':'')+'.</p><p class="chip" style="display:inline-block">Demo mode: your code is <b>'+otp+'</b>. A real build sends it by SMS or email.</p><form id="vf" autocomplete="off"><div class="fld"><label for="av">Verification code</label><input type="text" id="av" maxlength="6" inputmode="numeric"></div><p class="note" id="aerr" role="alert" style="color:var(--bad)"></p><button class="btn" type="submit" style="width:100%">Verify</button></form><div class="row"><button class="btn alt sm" data-a="resend">Resend code</button><button class="btn alt sm" data-a="later">Verify later</button></div></div>'}
+else if(isReal()){var mine=tickets.filter(function(t){return t.owner===sess.id});
+h='<div class="card" style="max-width:560px;margin:0 auto"><h2>Your account</h2><p style="margin:0 0 4px"><b>'+esc(sess.name)+'</b> · '+(sess.role==='official'?'Government official':'Citizen')+' · '+(sess.verified?'Verified':'Pending review')+'</p><p class="note" style="margin:0 0 12px">'+esc(sess.contact||'')+'</p>'
++(sess.role==='official'&&!sess.verified?'<div class="card" style="background:var(--soft);margin-bottom:12px"><b>Pending review</b><p class="note" style="margin:4px 0 8px">Department: '+esc(sess.dept||'')+'. ID number: '+esc(sess.empId||'')+'. Proof document: '+esc((sess.proof&&sess.proof.name)||'')+'.</p><p class="note" style="margin:0 0 8px">An admin checks your government ID with your department before the dashboard unlocks. In this demo you can simulate that approval.</p><button class="btn sm" data-a="approve">Simulate admin approval</button></div>':'')
++(sess.admin?pendingList():'')+'<h3 style="font-size:18px">Your tickets</h3>'+(mine.length?mine.map(function(t){return'<p style="margin:4px 0"><a href="#'+t.id+'" style="color:var(--text)"><b>'+t.id+'</b></a> · '+CATS[t.cat].n.en+' · '+t.status+'</p>'}).join(''):'<p class="note">None yet.'+(canFile()?' Report an issue from the Citizen chat tab.':'')+'</p>')+'<div class="row"><button class="btn" data-a="chat">Citizen chat</button>'+(isOff()?'<button class="btn alt" data-a="dash">Open dashboard</button>':'')+'<button class="btn alt" data-a="out">Log out</button></div></div>'}
+else{
+h=adminCard()+'<div class="grid2" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr)">'+side+'<div class="card"><h2>'+(su?'Create your account':'Log in')+'</h2>'+(aNote?'<p class="chip hi" style="display:inline-block">'+esc(aNote)+'</p>':'')+'<form id="af" autocomplete="off">'+(su?'<div class="fld"><label for="an">Full name</label><input type="text" id="an"></div>':'')+''+(su?'<div class="fld"><label for="ac" id="emailLabel">Email (optional for citizens)</label><input type="text" id="ac" autocomplete="email" placeholder="Enter email (optional for citizens)"></div><div class="fld"><label for="aph">Phone number (10 digits)</label><input type="text" id="aph" maxlength="10" inputmode="numeric" autocomplete="tel" placeholder="9876543210"><span class="note" id="phe" role="alert" style="color:var(--bad)"></span></div>':'<div class="fld"><label for="ac">Email or 10-digit phone number</label><input type="text" id="ac" autocomplete="username"></div>')+'<div class="fld"><label for="ap">Password'+(su?' (at least 6 characters)':'')+'</label><input type="password" id="ap"></div>'
++(su?'<div class="fld"><label for="ar">I am a</label><select id="ar"><option value="citizen">Citizen</option><option value="official">Government official</option></select></div><div id="citizenloc"><p class="note" style="margin:10px 0 0">Your address helps route complaints to the correct local authority.</p><div class="fld"><label for="astate">State</label><select id="astate"><option value="">Select state</option>'+Object.keys(INDIA_LOCATIONS).map(function(x){return'<option>'+x+'</option>'}).join('')+'</select></div><div class="fld"><label for="acity">City</label><select id="acity" disabled><option value="">Select state first</option></select></div><div class="fld"><label for="alocality">Locality / Area</label><select id="alocality" disabled><option value="">Select city first</option></select></div><p class="note">Demo directory covers selected cities and sample localities in five states. Choose “Other / not listed” if your area is missing.</p><div class="fld" id="otherlocalwrap" hidden><label for="otherlocal">Enter your locality</label><input type="text" id="otherlocal" placeholder="Enter locality or neighbourhood"></div></div><div id="offf" hidden><div class="fld"><label for="ad">Department</label><select id="ad"><option>Municipal corporation</option><option>Water board</option><option>Electricity department</option><option>Roads and works</option><option>Solid waste management</option><option>Drainage and sewerage</option></select></div><div class="fld"><label for="ae">Government ID or employee number</label><input type="text" id="ae"></div><div class="fld"><label for="apf">Proof of government employment (ID card photo or PDF)</label><input type="file" id="apf" accept="image/*,.pdf"></div><p class="note">Use your government email above, ending in .gov.in or .nic.in. In this demo only the file name is kept. A real build uploads it securely for admin review.</p></div>':'')
++'<p class="note" id="aerr" role="alert" style="color:var(--bad)"></p><button class="btn" type="submit" style="width:100%">'+(su?'Sign up':'Log in')+'</button></form><div class="row" style="justify-content:space-between"><button class="btn alt sm" data-a="mode">'+(su?'I already have an account':'Create an account')+'</button><button class="btn alt sm" data-a="guest">Continue as guest</button></div><p class="note" style="margin-bottom:4px">Quick demo access</p><div class="row" style="margin-top:0"><button class="btn alt sm" data-a="democ">Verified citizen</button><button class="btn alt sm" data-a="demo">Verified official</button></div><p class="note">Demo only: accounts and password hashes live in this browser and are not secure production authentication. A real build needs server-side authentication, access controls and secure document storage.</p></div></div>'}
+$('account').innerHTML=h}
+$('account').addEventListener('change',function(e){if(e.target.id==='ar'){ $('offf').hidden=e.target.value!=='official';$('citizenloc').hidden=e.target.value!=='citizen';var official=e.target.value==='official';$('emailLabel').textContent=official?'Government email (required)':'Email (optional)';$('ac').placeholder=official?'name@department.gov.in':'Enter email (optional for citizens)';}if(e.target.id==='astate'){fillCities(e.target.value);$('acity').disabled=!e.target.value;$('alocality').disabled=true;}if(e.target.id==='acity'){fillLocalities(e.target.value);$('alocality').disabled=!e.target.value;}if(e.target.id==='alocality')$('otherlocalwrap').hidden=e.target.value!=='Other / not listed';});
+$('account').addEventListener('input',function(e){if(e.target.id==='aph'){e.target.value=e.target.value.replace(/\D/g,'').slice(0,10);$('phe').textContent=''}});
+$('account').addEventListener('focusout',function(e){if(e.target.id==='aph'){var v=e.target.value;$('phe').textContent=v.length&&v.length<10?'Phone number must be exactly 10 digits.':''}});
+$('gate').addEventListener('click',function(e){if(e.target.closest('[data-a]'))openAccount()});
+$('account').addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a;
+if(a==='mode'){aMode=aMode==='login'?'signup':'login';aNote='';renderAcct()}
+else if(a==='guest'){setSess({id:'guest',name:'Guest',role:'guest',verified:false});go('citizen')}
+else if(a==='democ'){setSess({id:'demo-citizen',name:'Demo Citizen',role:'citizen',verified:true,contact:'citizen@dhawani.demo',state:'Karnataka',city:'Hubballi-Dharwad',locality:'Vidya Nagar'});go('citizen')}
+else if(a==='demo'){setSess({id:'demo-official',name:'Demo Official',role:'official',verified:true,contact:'official@demo.gov.in'});go('officials')}
+else if(a==='out'){setSess(null);aMode='signup';aNote='';showTab('account')}
+else if(a==='chat'||a==='later')go('citizen')
+else if(a==='dash')go('officials')
+else if(a==='resend'){newOtp();renderAcct()}
+else if(a==='approve'){sess.verified=true;saveUser(sess);updateWho();updateGate();renderAcct()}
+else if(a==='adm'&&isAdmin){setSess({id:'admin',name:'Admin',role:'official',verified:true,admin:true,contact:'admin'});go('officials')}
+else if(a==='admc'&&isAdmin){setSess({id:'admin-citizen',name:'Admin',role:'citizen',verified:true,admin:true,contact:'admin'});go('citizen')}
+else if((a==='apu'||a==='rju')&&isAdmin&&sess&&sess.admin){var uid=b.dataset.u,l=users();if(a==='apu'){l.forEach(function(u){if(u.id===uid)u.verified=true})}else{l=l.filter(function(u){return u.id!==uid})}sset('jv_users',JSON.stringify(l));renderAcct()}});
+$('account').addEventListener('submit',function(e){e.preventDefault();var err=$('aerr');
+if(e.target.id==='vf'){if($('av').value.trim()===otp){sess.verified=true;saveUser(sess);updateWho();updateGate();go('citizen')}else err.textContent='That code doesn’t match. Check the demo code above.';return}
+var c=$('ac').value.trim().toLowerCase(),p=$('ap').value,su=aMode==='signup',ph=su?$('aph').value:'';
+if(!window.crypto||!crypto.subtle){err.textContent='This browser can’t secure passwords here.';return}
+var dig=/^[\d\s+-]+$/.test(c)?c.replace(/\D/g,''):null;
+if(su){var signupRole=$('ar').value;if(c&&!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/.test(c)){err.textContent='Enter a valid email address, or leave it blank if you are a citizen.';return}
+if(signupRole==='official'&&!c){err.textContent='Government officials must enter their official email address.';return}
+if(!/^\d{10}$/.test(ph)){err.textContent='Phone number must be exactly 10 digits.';$('phe').textContent='Phone number must be exactly 10 digits.';return}
+if(p.length<6){err.textContent='Password must be at least 6 characters.';return}}
+else{if(dig!==null&&dig.length!==10){err.textContent='Phone number must be exactly 10 digits.';return}
+if(c.length<3||!p){err.textContent='Enter your email or phone number and password.';return}}
+var list=users(),u=list.filter(function(x){return su?((c&&x.contact===c)||(ph&&x.phone===ph)):(dig!==null?x.phone===dig:x.contact===c)})[0];
+if(su){var n=$('an').value.trim(),role=$('ar').value;if(role==='citizen'&&!c)c=ph;if(!n){err.textContent='Please enter your name.';return}
+if(u){err.textContent='An account with that email or phone number already exists. Log in instead.';return}
+var extra={};
+if(role==='citizen'){var state=$('astate').value,city=$('acity').value,locality=$('alocality').value;if(!state||!city||!locality){err.textContent='Please select your state, city and locality.';return}if(locality==='Other / not listed'){locality=$('otherlocal').value.trim();if(!locality){err.textContent='Please enter your locality.';return}}extra={state:state,city:city,locality:locality};}
+if(role==='official'){var f=$('apf').files[0],em=$('ae').value.trim();
+if(!/^[^@\s]+@[^@\s]+\.(gov\.in|nic\.in|gov)$/.test(c)){err.textContent='Officials must sign up with a government email ending in .gov.in or .nic.in.';return}
+if(em.length<4){err.textContent='Enter your government ID or employee number.';return}
+if(!f){err.textContent='Upload a proof of government employment (ID card photo or PDF).';return}
+extra={dept:$('ad').value,empId:em,proof:{name:f.name,size:f.size}}}
+
+var salt=hex(crypto.getRandomValues(new Uint8Array(8)));
+hashPw(p,salt).then(function(h){var nu={id:'u'+Date.now(),name:n,contact:c,phone:ph,role:role,salt:salt,h:h,verified:false};for(var k in extra)nu[k]=extra[k];list.push(nu);sset('jv_users',JSON.stringify(list));setSess(nu);if(role==='citizen'){aMode='verify';newOtp()}go('account')})}
+else{if(!u){err.textContent='No account found. Check your details or sign up.';return}
+hashPw(p,u.salt).then(function(h){if(h!==u.h){err.textContent='Incorrect password.';return}setSess(u);if(u.role==='citizen'&&!u.verified){aMode='verify';newOtp();go('account')}else if(u.role==='official'&&!u.verified)go('account');else go(u.role==='official'?'officials':'citizen')})}});
+$('acct').addEventListener('click',openAccount);
+(function(){var id=sget('jv_sess');var u=users().filter(function(x){return x.id===id})[0]||null;if(u){sess=u;entered=true}updateWho()})();
+function showTab(n){if(!entered)n='account';else if(n==='officials'&&!isOff()){n='account';aNote='The dashboard is for verified government officials. Sign up as an official and get approved, or use the demo official login.'}
+$('tabs').hidden=!entered;
+document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x.dataset.tab===n?'true':'false')});['citizen','track','officials','account'].forEach(function(s){$(s).hidden=s!==n});if(n==='account')renderAcct();else aNote='';updateGate()}
+var liveT=[];
+function liveRun(text){liveT.forEach(clearTimeout);liveT=[];var L=$('live'),A=$('liveact');L.innerHTML='';A.innerHTML='';text=text.trim();if(!text)return;
+var lang=detect(text),cat=classify(text),loc=place(text)||accountPlace(),rows=[['Heard','“'+text+'”'],['Language',{kn:'Kannada',hi:'Hindi',en:'English'}[lang]]];
+if(cat){var c=CATS[cat];rows.push(['Issue',c.n.en+(lang!=='en'?' ('+c.n[lang]+')':'')],['Place',loc||'not given'],['Urgency',URG[urgency(text)].en],['Routed to',c.dept+' (simulated)'])}else rows.push(['Issue','Couldn’t tell. Try rephrasing.']);
+rows.forEach(function(r,i){liveT.push(setTimeout(function(){var li=document.createElement('li'),b=document.createElement('b'),sp=document.createElement('span');b.textContent=r[0];sp.textContent=r[1];li.appendChild(b);li.appendChild(sp);L.appendChild(li);if(i===rows.length-1&&cat)fin()},i*450))});
+function fin(){if(!canFile()){A.innerHTML='<p class="note">Sign up and verify your account to file this ticket.</p>';return}
+var b=document.createElement('button');b.type='button';b.className='btn';b.textContent='File this ticket';b.onclick=function(){b.disabled=true;add(text,'me');afterConfirm(lang,cat,loc,text);A.innerHTML='<p class="note">Sent to the chat. Check the reply there.</p>'};A.appendChild(b)}}
+$('demo1').addEventListener('click',function(){liveRun(SAMPLES[1])});
+var VOICE={rec:null,btn:null};
+function voiceErr(code){
+ var messages={
+  'not-allowed':'Microphone permission is blocked. In Chrome, click the site icon beside the address bar → Site settings → Microphone → Allow, then reload.',
+  'service-not-allowed':'The browser speech service is blocked. Try Chrome or Edge and check your browser privacy settings.',
+  'no-speech':'I did not hear speech. Check your microphone, then tap Speak and try again.',
+  'audio-capture':'No microphone was detected. Connect a microphone and check your computer input settings.',
+  'network':'Speech recognition could not reach its online service. Check your internet connection and try again.',
+  'language-not-supported':'This browser speech service does not support the selected language. Try Hindi or English.',
+  'aborted':'Voice capture was stopped.'
+ };
+ return messages[code]||('Voice input failed ('+(code||'unknown error')+'). Check microphone permission and try again.');
+}
+function startVoice(btn,say,done){
+ var R=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!R){say('Voice recognition is unavailable in this browser. Please open this page in the latest Google Chrome or Microsoft Edge, or type your complaint.');return}
+ if(!window.isSecureContext && location.hostname!=='localhost' && location.hostname!=='127.0.0.1'){
+  say('Microphone access requires a secure page (HTTPS). Open the deployed HTTPS website, or run it from localhost.');return;
+ }
+ if(VOICE.rec){try{VOICE.rec.stop()}catch(e){}return;}
+ var r=new R(),got=false,idle=btn.dataset.label||btn.textContent;
+ btn.dataset.label=idle;VOICE.rec=r;VOICE.btn=btn;
+ r.lang=$('vl').value||'kn-IN';r.interimResults=true;r.continuous=false;r.maxAlternatives=1;
+ r.onstart=function(){if(btn.id==='mic')btn.textContent='■ Stop';else btn.textContent='Listening…';say('Listening in '+$('vl').selectedOptions[0].text+'. Speak clearly now.');};
+ r.onresult=function(e){var t='';for(var i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)t+=e.results[i][0].transcript;}t=t.trim();if(t&&!got){got=true;say('Recognised: '+t);done(t);}};
+ r.onerror=function(e){got=true;var m=voiceErr(e.error);if(e.error!=='aborted')say(m);};
+ r.onend=function(){if(VOICE.rec===r)VOICE.rec=null;if(VOICE.btn===btn)VOICE.btn=null;btn.textContent=idle;if(!got)say('No words were captured. Check the microphone and selected language, then try again.');};
+ try{r.start();}catch(x){VOICE.rec=null;VOICE.btn=null;btn.textContent=idle;say('Could not start voice recognition. Allow microphone access, close other apps using the microphone, and try again.');}
+}
+$('bigmic').addEventListener('click',function(){startVoice(this,function(m){$('lmsg').textContent=m},function(t){$('lmsg').textContent='Got it.';liveRun(t)})});
+var STORY=[['Chapter 1: The problem','Lakshmi sells vegetables in a small town. The street light outside her stall has been dark for a week, and customers no longer stop after sunset. Government portals are in English, and she can’t use them.'],
+['Chapter 2: She speaks','She sends a short voice note in Hindi: “हमारी स्ट्रीट लाइट एक हफ़्ते से काम नहीं कर रही है”. No forms and no English.'],
+['Chapter 3: A ticket','Dhawani understands, asks her to confirm in Hindi, and gives her a ticket number. Six neighbours tap “Me too”, so officials see one issue with seven voices behind it.'],
+['Chapter 4: Fixed','The department sees the issue ranked first in its queue. Three days later the lamp is on, and Lakshmi confirms it in one tap.']],si=0;
+function story(){$('sk').textContent='Story';$('st').textContent=STORY[si][0];$('sb').textContent=STORY[si][1];$('sd').textContent=(si+1)+' of '+STORY.length;$('sp').disabled=si===0;$('sn').disabled=si===STORY.length-1}
+$('sp').addEventListener('click',function(){si=Math.max(0,si-1);story()});$('sn').addEventListener('click',function(){si=Math.min(STORY.length-1,si+1);story()});story();
+(function(){try{if(!window.claude||!window.claude.use)return;window.claude.use('user').then(function(u){return u?u.isOwner():false}).then(function(o){if(o){isAdmin=true;if(!$('account').hidden)renderAcct()}}).catch(function(){})}catch(e){}})();
+var GR=['नमस्ते','Hello'],gi=0;setInterval(function(){gi=(gi+1)%GR.length;$('greet').textContent=GR[gi];$('bscript').textContent='ध्वनि'},2500);
+function route(){var h=location.hash.slice(1);if(/^GRV-\d+$/i.test(h)){showTab('track');$('tid').value=h.toUpperCase();trackShow(h)}else if(h==='officials'||h==='track'||h==='citizen'||h==='account')showTab(h);else showTab('citizen')}
+window.addEventListener('hashchange',route);
+document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){location.hash=b.dataset.tab;showTab(b.dataset.tab)})});
+$('rows').addEventListener('change',function(e){var id=e.target.getAttribute('data-id');if(id){tickets.forEach(function(t){if(t.id===id)t.status=e.target.value});saveTickets();render()}});$('q').addEventListener('input',render);$('sf').addEventListener('change',render);
+$('f').addEventListener('submit',function(e){e.preventDefault();var v=$('in').value;$('in').value='';send(v)});
+$('tf').addEventListener('submit',function(e){e.preventDefault();var v=$('tid').value.trim().toUpperCase();location.hash=v;trackShow(v)});
+$('try').innerHTML=SAMPLES.map(function(s,i){return'<button type="button" data-s="'+i+'">'+esc(s)+'</button>'}).join('');
+$('try').addEventListener('click',function(e){var b=e.target.closest('button');if(b)send(SAMPLES[+b.getAttribute('data-s')])});
+$('th').addEventListener('click',function(){var r=document.documentElement,d=(r.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'))==='dark';r.dataset.theme=d?'light':'dark'});
+$('phb').addEventListener('click',function(){$('ph').click()});
+$('ph').addEventListener('change',function(){var f=this.files[0];if(!f)return;photo={name:f.name};$('pv').textContent='Photo attached: '+f.name+' (vision check simulated). '})
+$('csv').addEventListener('click',function(){var t='id,category,place,ward,urgency,status,age_days\n'+tickets.map(function(x){return[x.id,x.cat,'"'+x.loc+'"',x.ward,x.urg,x.status,x.age].join(',')}).join('\n');
+try{navigator.clipboard.writeText(t).then(function(){$('cnote').textContent='CSV copied to clipboard.'},function(){$('cnote').textContent='Copy was blocked by the browser.'})}catch(e){$('cnote').textContent='Copy was blocked by the browser.'}});
+
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR){$('mic').hidden=true;$('vl').hidden=true;$('vnote').textContent='Voice input needs a browser with speech recognition, such as Chrome.'}
+else $('mic').addEventListener('click',function(){startVoice(this,function(m){$('vnote').textContent=m},function(t){$('in').value=($('in').value?$('in').value+' ':'')+t;$('vnote').textContent='';$('in').focus()})});
+add('Namaste! Welcome to Dhawani. Tell me your civic problem in Hindi or English, by text, voice or photo. I’ll confirm it, create a ticket and send it to the right department.','bot');
+render();route();
+</script>
+<script>
+(function(){var $=function(i){return document.getElementById(i)},z=1,pg=function(){return document.getElementById('main-content')};
+function setZ(v){z=Math.min(1.3,Math.max(.85,v));document.body.style.zoom=z}
+$('fzm').onclick=function(){setZ(z-.075)};$('fzr').onclick=function(){setZ(1)};$('fzp').onclick=function(){setZ(z+.075)};
+var links=document.querySelectorAll('nav.main a');
+function mark(h){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')===h)})}
+document.querySelectorAll('[data-home]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'',location.pathname);scrollTo({top:0,behavior:'smooth'});mark('#')})});
+document.querySelectorAll('[data-sec]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'});mark(a.getAttribute('href'))})});
+document.querySelectorAll('[data-tab]').forEach(function(a){a.addEventListener('click',function(){mark(a.getAttribute('href'));setTimeout(function(){pg().scrollIntoView({behavior:'smooth'})},80)})});
+})();
+</script>
+<script>
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// scroll progress bar
+var bar=document.getElementById('prog');
+function pr(){var h=document.documentElement.scrollHeight-innerHeight;bar.style.transform='scaleX('+(h>0?Math.min(1,scrollY/h):0)+')'}
+addEventListener('scroll',pr,{passive:true});pr();
+// sample ticket moves through its stages
+var tk=document.querySelector('.tk');
+if(tk&&!reduce){var lis=tk.querySelectorAll('.steps li'),em=tk.querySelector('.h em'),names=['Registered','Assigned','In progress','Resolved'],k=1;
+ function setK(n){lis.forEach(function(li,i){li.className=i<n?'done':i===n?'cur':'';li.firstElementChild.textContent=i<n?'✓':String(i+1)});if(n===3){lis[3].className='done';lis[3].firstElementChild.textContent='✓'}em.textContent=names[n]}
+ setK(1);setInterval(function(){k=(k+1)%4;setK(k)},2600)}
+// reveal on scroll
+if(!reduce&&'IntersectionObserver' in window){
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(function(){t.style.transitionDelay='';t.classList.remove('rv');t.classList.remove('in')},1400)}})},{rootMargin:'0px 0px -8% 0px'});
+ document.querySelectorAll('.secthead,.hw .card,.ways div,.pc,.info .card,.info h2').forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)})}
+})();
+</script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* ---- girl: hands meet as you scroll down ---- */
+var uaL=$('uaL'),uaR=$('uaR'),faL=$('faL'),faR=$('faR'),hL=$('hL'),hR=$('hR'),eo=$('eo'),ec=$('ec'),bu=$('burst'),pill=$('gpill');
+function lerp(a,b,t){return a+(b-a)*t}
+var touched=null;
+function pose(p){
+ var e=p*p*(3-2*p),ex=lerp(50,72,e),ey=lerp(206,222,e),hx=lerp(52,110,e),hy=lerp(170,186,e);
+ uaL.setAttribute('d','M88 172L'+ex+' '+ey);faL.setAttribute('d','M'+ex+' '+ey+'L'+hx+' '+hy);
+ uaR.setAttribute('d','M152 172L'+(240-ex)+' '+ey);faR.setAttribute('d','M'+(240-ex)+' '+ey+'L'+(240-hx)+' '+hy);
+ hL.setAttribute('transform','translate('+(hx-110)+' '+(hy-186)+') rotate('+lerp(-28,0,e)+' 113 184)');
+ hR.setAttribute('transform','translate('+((240-hx)-130)+' '+(hy-186)+') rotate('+lerp(28,0,e)+' 127 184)');
+ var t=p>=.97;eo.setAttribute('opacity',p>.9?0:1);ec.setAttribute('opacity',p>.9?1:0);
+ if(t!==touched){if(t&&touched!==null){bu.classList.remove('go');void bu.getBBox();bu.classList.add('go')}touched=t;
+  pill.innerHTML=t?'<span lang="hi">नमस्ते</span> · Namaste':'Scroll down ↓';pill.classList.toggle('on',t)}
+}
+if(uaL){
+ if(reduce){pose(1)}else{
+  var tick=false,upd=function(){tick=false;pose(Math.min(1,Math.max(0,scrollY/260)))};
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});upd()}
+}
+/* ---- change location after sign-in ---- */
+var dlg=$('locDlg');
+function opt(sel,vals,ph){sel.innerHTML='<option value="">'+ph+'</option>'+vals.map(function(x){return'<option>'+esc(x)+'</option>'}).join('')}
+function cities(st){return Object.keys(INDIA_LOCATIONS[st]||{})}
+function locs(st,c){return((INDIA_LOCATIONS[st]||{})[c]||[]).concat(['Other / not listed'])}
+$('lstate').onchange=function(){opt($('lcity'),cities(this.value),'Select city');$('lcity').disabled=!this.value;opt($('llocality'),[],'Select locality / area');$('llocality').disabled=true;$('lotherw').hidden=true};
+$('lcity').onchange=function(){opt($('llocality'),locs($('lstate').value,this.value),'Select locality / area');$('llocality').disabled=!this.value;$('lotherw').hidden=true};
+$('llocality').onchange=function(){$('lotherw').hidden=this.value!=='Other / not listed'};
+function openLoc(){
+ if(!sess||sess.role!=='citizen')return;
+ opt($('lstate'),Object.keys(INDIA_LOCATIONS),'Select state');
+ $('lstate').value=sess.state||'';$('lstate').onchange();
+ if(sess.state&&sess.city){$('lcity').value=sess.city;$('lcity').onchange()}
+ var l=sess.locality||'';
+ if(l){if(locs(sess.state,sess.city).indexOf(l)>-1)$('llocality').value=l;else{$('llocality').value='Other / not listed';$('lotherw').hidden=false;$('lother').value=l}}
+ $('lerr').textContent='';dlg.showModal()}
+$('locF').addEventListener('submit',function(e){
+ e.preventDefault();var st=$('lstate').value,c=$('lcity').value,l=$('llocality').value;
+ if(!st||!c||!l){$('lerr').textContent='Please select your state, city and locality.';return}
+ if(l==='Other / not listed'){l=$('lother').value.trim();if(!l){$('lerr').textContent='Please enter your locality.';return}}
+ sess.state=st;sess.city=c;sess.locality=l;
+ try{if(users().some(function(u){return u.id===sess.id}))saveUser(sess)}catch(x){}
+ updateWho();dlg.close();
+ if(!$('account').hidden)renderAcct();
+ add('Complaint area updated to '+accountPlace()+'. New complaints will use this area.','bot')});
+$('lcancel').onclick=function(){dlg.close()};
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+$('chgLoc').onclick=openLoc;
+var _uw=updateWho;updateWho=function(){_uw();$('chgLoc').hidden=!(sess&&sess.role==='citizen')};
+var _ra=renderAcct;renderAcct=function(){_ra();
+ var box=$('account'),h3=box.querySelector('.card h3');
+ if(sess&&sess.role==='citizen'&&sess.verified&&h3&&/Your tickets/.test(h3.textContent)){
+  var d=document.createElement('div');d.className='area-summary';d.style.marginTop='12px';
+  d.innerHTML='<span class="area-pin" aria-hidden="true">⌖</span><span><b>Complaint area</b><small>'+esc(accountPlace()||'Not set yet')+'</small></span><button type="button" class="btn alt sm" style="margin-left:auto">Change location</button>';
+  h3.parentNode.insertBefore(d,h3);d.querySelector('button').onclick=openLoc}};
+updateWho();
+})();
+</script>
+</body>
+</html>
